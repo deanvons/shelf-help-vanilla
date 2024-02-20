@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shelf Help</title>
+    <script src="app.js" defer type="module"></script>
+    <style>
+      img {
+        width: 250px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="./pages/collection.html">My Collection</a>
+      <a href="./pages/login.html">Login</a>
+    </nav>
+
+    <!-- Display our book options -->
+    <button id="btnFilter">Filter</button>
+    <button id="btnReset">Reset</button>
+    <select id="authorList">
+      <option value="default" disabled selected>Select your author</option>
+    </select>
+
+    <div id="loader">
+      <h3>...loading</h3>
+    </div>
+    <div id="book-list"></div>
+    <div id="pageButtons"></div>
+  </body>
+</html>
