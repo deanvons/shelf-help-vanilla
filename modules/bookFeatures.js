@@ -1,10 +1,5 @@
-// -> 6 books over 3 pages
-
-// could also be named split or partition or pageSeperate whatevs
-export function paginateGross(books, pages) {
+export function paginate(books, pages) {
   const paginatedArray = [];
-
-  // an array of items to split (items)
   const booksPerPage = books.length / pages;
 
   let counter = 0;
@@ -17,18 +12,15 @@ export function paginateGross(books, pages) {
       tempArray.push(book);
       counter++;
     }
-    if (counter === 2) {
+    if (counter === booksPerPage) {
       counter = 0;
       paginatedArray.push(tempArray);
     }
   }
-
   return paginatedArray;
-
-  // return an array of arrays split by number of pages
 }
 
-export function paginate(items, itemsPerPage) {
+export function paginateAlt(items, itemsPerPage) {
   const totalPages = Math.ceil(items.length / itemsPerPage);
   const pages = [];
 
@@ -40,5 +32,3 @@ export function paginate(items, itemsPerPage) {
 
   return pages;
 }
-
-// const paginatedBooks = paginate(bookData, 3) // -> [[book1,book2],[book3,book4],[book5,book6]] :)

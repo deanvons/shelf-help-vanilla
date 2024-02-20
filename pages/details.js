@@ -1,5 +1,7 @@
+// store DOM elements
+const bookListDiv = document.getElementById("bookList");
+// gets the selected book from session storage
 const selectedBook = JSON.parse(sessionStorage.getItem("selectedBook"));
-const bookListDiv = document.getElementById("book-list");
 
 displayBookDetails(selectedBook);
 
@@ -27,21 +29,7 @@ function displayBookDetails(book) {
     sessionStorage.setItem("collectedBooks", updateCollection);
 
     // store in users collection in API
-
-    fetch("http://localhost:3000/users/1")
-      .then((response) => response.json())
-      .then((userData) => {
-        fetch("http://localhost:3000/users/1", {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            ...userData,
-            id: userData.id,
-            username: userData.username,
-            collection: [...userData.collection, book.title],
-          }),
-        }).then((response) => console.log(response));
-      });
+    addBookToCollection(book, 1);
   });
 
   selectBookBtn.innerText = "Add to collection";
@@ -55,4 +43,21 @@ function displayBookDetails(book) {
   document.getElementById("readMore").addEventListener("click", () => {
     bookBlurb.innerHTML = book.blurb;
   });
+}
+
+function addBookToCollection(book, userId) {
+  fetch(`http://localhost:3000/users/${userId}`)
+    .then((response) => response.json())
+    .then((userData) => {
+      fetch("http://localhost:3000/users/1", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...userData,
+          id: userData.id,
+          username: userData.username,
+          collection: [...userData.collection, book.title],
+        }),
+      }).then((response) => console.log(response));
+    });
 }

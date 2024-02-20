@@ -7,7 +7,7 @@
     <script src="app.js" defer type="module"></script>
     <style>
       img {
-        width: 250px;
+        width: 220px;
       }
     </style>
   </head>
@@ -16,18 +16,15 @@
       <a href="./pages/collection.html">My Collection</a>
       <a href="./pages/login.html">Login</a>
     </nav>
-
-    <!-- Display our book options -->
-    <button id="btnFilter">Filter</button>
-    <button id="btnReset">Reset</button>
+    <button id="btnReset">Show All</button>
     <select id="authorList">
-      <option value="default" disabled selected>Select your author</option>
+      <option value="default" disabled selected>Filter by author</option>
     </select>
 
     <div id="loader">
       <h3>...loading</h3>
     </div>
-    <div id="book-list"></div>
+    <div id="bookList"></div>
     <div id="pageButtons"></div>
   </body>
 </html>
