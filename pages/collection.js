@@ -1,7 +1,4 @@
-// display example user (id: 1)
-displayUsersCollection(1);
-
-function displayUsersCollection(userId) {
+export function displayUsersCollection(userId) {
   getUserById(userId)
     .then((userData) => {
       // displays users collection

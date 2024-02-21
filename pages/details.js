@@ -1,13 +1,11 @@
-// store DOM elements
-const bookListDiv = document.getElementById("bookList");
-// gets the selected book from session storage
-const selectedBook = JSON.parse(sessionStorage.getItem("selectedBook"));
 
-displayBookDetails(selectedBook);
 
 // Defines a function to display a book's information in the DOM
-function displayBookDetails(book) {
+export function displayBookDetails() {
+  // gets the selected book from session storage
+const book = JSON.parse(sessionStorage.getItem("selectedBook"));
   // create and load elements into div to show book details
+  const bookListDetailsDiv = document.getElementById('bookList')
   const bookDiv = document.createElement("div");
   const bookTitlePara = document.createElement("p");
   bookTitlePara.innerText = book.title;
@@ -22,15 +20,7 @@ function displayBookDetails(book) {
   const selectBookBtn = document.createElement("button");
 
   selectBookBtn.addEventListener("click", () => {
-    // storing book collection in session storage
-    // read previous collection of books from session
-    // let currentCollection = sessionStorage.getItem("collectedBooks");
-    // // add the new book
-    // let updateCollection = (currentCollection += `#${book.title}`);
-    // // update session storage
-    // sessionStorage.setItem("collectedBooks", updateCollection);
-
-    // store in users collection in API -> NOTE: this replaces the above session storage approach for the collection
+  // store in users collection in API -> NOTE: this replaces the previous session storage approach for the collection
     addBookToCollection(book, 1);
   });
 
@@ -40,7 +30,7 @@ function displayBookDetails(book) {
   bookDiv.appendChild(bookTitlePara);
   bookDiv.appendChild(bookBlurb);
   bookDiv.appendChild(selectBookBtn);
-  bookListDiv.appendChild(bookDiv);
+  bookListDetailsDiv.appendChild(bookDiv);
 
   // read more feature logic
   document.getElementById("readMore").addEventListener("click", () => {

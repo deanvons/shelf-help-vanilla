@@ -19,7 +19,7 @@ registerButton.addEventListener("click", () => {
   }).then(() => {
     // redirect to home page
     window.location.href =
-      "http://127.0.0.1:5500/shelf-help-demo-build/index.html";
+      "http://127.0.0.1:5500/index.html";
   });
 });
 
@@ -37,7 +37,7 @@ loginButton.addEventListener("click", () => {
         alert("You are logged in");
         // redirect to home page
         window.location.href =
-          "http://127.0.0.1:5500/shelf-help-demo-build/index.html";
+          "http://127.0.0.1:5500/index.html";
       } else {
         alert("Please register");
       }
