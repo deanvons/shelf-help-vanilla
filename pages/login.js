@@ -3,6 +3,7 @@ const loginButton = document.getElementById("btnLogin");
 const registerUsername = document.getElementById("register");
 const loginUsername = document.getElementById("login");
 
+// add user to the API
 registerButton.addEventListener("click", () => {
   let newUser = {
     username: registerUsername.value,
@@ -16,28 +17,29 @@ registerButton.addEventListener("click", () => {
       "Content-type": "application/json; charset=UTF-8",
     },
   }).then(() => {
+    // redirect to home page
     window.location.href =
       "http://127.0.0.1:5500/shelf-help-demo-build/index.html";
   });
 });
 
+// check if the user is in the API (registered)
 loginButton.addEventListener("click", () => {
-    
   fetch("http://localhost:3000/users")
     .then((response) => response.json())
     .then((usersData) => {
-      let result = usersData.filter((user) => user.username === loginUsername.value);
+      let result = usersData.filter(
+        (user) => user.username === loginUsername.value
+      );
 
-      if(result.length >0 ){
+      if (result.length > 0) {
         // successful login
-        alert("You are logged in")
+        alert("You are logged in");
+        // redirect to home page
         window.location.href =
-        "http://127.0.0.1:5500/shelf-help-demo-build/index.html";
-         
+          "http://127.0.0.1:5500/shelf-help-demo-build/index.html";
+      } else {
+        alert("Please register");
       }
-      else{
-        alert("Please register")
-      }
-     
     });
 });

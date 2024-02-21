@@ -7,6 +7,7 @@ displayBookDetails(selectedBook);
 
 // Defines a function to display a book's information in the DOM
 function displayBookDetails(book) {
+  // create and load elements into div to show book details
   const bookDiv = document.createElement("div");
   const bookTitlePara = document.createElement("p");
   bookTitlePara.innerText = book.title;
@@ -14,21 +15,22 @@ function displayBookDetails(book) {
   bookImg.src = `http://localhost:3000/assets/images/${book.coverImg}`;
   bookImg.alt = "a picture of a book";
   const bookBlurb = document.createElement("p");
+
+  // read more feature, only shows the text before the first comma (,)
   const firstSentence = book.blurb.split(",")[0];
   bookBlurb.innerHTML = `<p>${firstSentence} +<span id="readMore">  ...read more</span></p>`;
   const selectBookBtn = document.createElement("button");
+
   selectBookBtn.addEventListener("click", () => {
-    // storing book collection
+    // storing book collection in session storage
     // read previous collection of books from session
-    let currentCollection = sessionStorage.getItem("collectedBooks");
+    // let currentCollection = sessionStorage.getItem("collectedBooks");
+    // // add the new book
+    // let updateCollection = (currentCollection += `#${book.title}`);
+    // // update session storage
+    // sessionStorage.setItem("collectedBooks", updateCollection);
 
-    // add the new book
-    let updateCollection = (currentCollection += `#${book.title}`);
-
-    // update session storage
-    sessionStorage.setItem("collectedBooks", updateCollection);
-
-    // store in users collection in API
+    // store in users collection in API -> NOTE: this replaces the above session storage approach for the collection
     addBookToCollection(book, 1);
   });
 
@@ -40,6 +42,7 @@ function displayBookDetails(book) {
   bookDiv.appendChild(selectBookBtn);
   bookListDiv.appendChild(bookDiv);
 
+  // read more feature logic
   document.getElementById("readMore").addEventListener("click", () => {
     bookBlurb.innerHTML = book.blurb;
   });
