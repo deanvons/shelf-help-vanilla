@@ -104,7 +104,7 @@ function displayBook(book) {
   bookDiv.appendChild(bookTitlePara);
   bookListDiv.appendChild(bookDiv);
 }
-// alternative function to create and insert the HTML to display a book but with templating
+// alternative way to to display a book's information in the DOM (with templating)
 function displayBookAlt(book) {
   // Create the div element for the book
   const bookDiv = document.createElement("div");

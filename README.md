@@ -4,6 +4,13 @@
 
 Shelf Help is a web-based application designed to offer users a convenient way to explore, filter, and manage a personal collection of books. Leveraging a local JSON server, Shelf Help provides an interactive interface for users to browse books, add them to their collection, and view detailed information about each title. 
 
+## Branches
+
+- **main** this is the version we finished on in class
+- **cleaning-up-our-gross-code** this is the cleaned up and more organised version of main
+- **additional-features** this is the version where additional features we discussed in class are added, for example routing, error handling, searching etc
+
+
 ## Features
 
 - **Browse Books**: Users can explore a list of books available on the Shelf Help platform.
