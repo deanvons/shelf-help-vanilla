@@ -16,20 +16,20 @@ function router() {
       module.setupHomePage();
     });
   } else if (path === "/pages/details.html") {
-    // setup home page
+    // setup details page
     import("./pages/details.js").then((module) => {
       module.displayBookDetails();
     });
   }
   else if (path === "/pages/collection.html") {
-    // setup home page
+    // setup collection page
     import("./pages/collection.js").then((module) => {
       module.displayUsersCollection(1);
     });
   }
   
   else if (path === "/pages/login.html") {
-    // setup home page
+    // setup login page
     import("./pages/login.js").then((module) => {
       
     });
