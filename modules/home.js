@@ -7,6 +7,7 @@ const dropdownAuthorList = document.getElementById("authorList");
 const resetButton = document.getElementById("btnReset");
 const pageButtons = document.getElementById("pageButtons");
 const loginLink = document.getElementById("loginLink");
+const searchForm = document.getElementById("search");
 
 dropdownAuthorList.addEventListener("change", () => {
   // filter by the selected option author name
@@ -20,6 +21,25 @@ resetButton.addEventListener("click", () => {
     displayBook(book);
   }
 });
+searchForm.addEventListener(
+  "input",
+  debounce((event) => {
+    event.preventDefault();
+
+    const searchWordFromUser = searchForm.searchWord.value;
+
+    let resultsOfSearch = bookData.filter((book) => {
+      return (book.title.toLowerCase().includes(searchWordFromUser.toLowerCase())||book.author.toLowerCase().includes(searchWordFromUser.toLowerCase()));
+    });
+
+    bookListDiv.innerHTML = ""
+
+    for(const book of resultsOfSearch){
+      displayBook(book)
+    }
+
+  }, 500)
+);
 
 export function setupHomePage() {
   // fetch book data and use promise
@@ -138,3 +158,16 @@ function filterByAuthor(authorToFilterBy) {
     displayBook(book);
   }
 }
+
+function debounce(func, delay) {
+  let timer;
+  return function () {
+    const context = this;
+    const args = arguments;
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      func.apply(context, args);
+    }, delay);
+  };
+}
+
