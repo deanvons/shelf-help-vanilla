@@ -1,15 +1,16 @@
-//#region Global:Book data, DOM objects and event listeners
-const path = window.location.pathname;
-console.log(path);
-// routing
+// NOTE: global imports like thie -> import { setupHomePage } from "./modules/home.js";
+// May cause errors if the module references a DOM element when changing pages
+
 router();
 
-//#region Display/rendering functions
-// initialize the home page
-
+// Runs the necessary JS for the current page
 function router() {
+  // gets the current url (page)
   const path = window.location.pathname;
 
+  // If your modules reference DOM elements (ex.. const registerButton = document.getElementById("btnRegister");)
+  // then you need to import the module from within the if statements as shown below to avoid errors
+  
   if (path === "/index.html") {
     // setup home page
     import("./modules/home.js").then((module) => {
@@ -17,22 +18,16 @@ function router() {
     });
   } else if (path === "/pages/details.html") {
     // setup details page
-    import("./pages/details.js").then((module) => {
+    import("./modules/details.js").then((module) => {
       module.displayBookDetails();
     });
-  }
-  else if (path === "/pages/collection.html") {
+  } else if (path === "/pages/collection.html") {
     // setup collection page
-    import("./pages/collection.js").then((module) => {
-      module.displayUsersCollection(1);
+    import("./modules/collection.js").then((module) => {
+      module.displayUsersCollection();
     });
-  }
-  
-  else if (path === "/pages/login.html") {
+  } else if (path === "/pages/login.html") {
     // setup login page
-    import("./pages/login.js").then((module) => {
-      
-    });
+    import("./modules/login.js").then((module) => {});
   }
 }
-//#endregion

@@ -1,4 +1,4 @@
-
+import { API_URL } from "./env.js";
 
 // Defines a function to display a book's information in the DOM
 export function displayBookDetails() {
@@ -10,7 +10,7 @@ const book = JSON.parse(sessionStorage.getItem("selectedBook"));
   const bookTitlePara = document.createElement("p");
   bookTitlePara.innerText = book.title;
   const bookImg = document.createElement("img");
-  bookImg.src = `http://localhost:3000/assets/images/${book.coverImg}`;
+  bookImg.src = `${API_URL}/assets/images/${book.coverImg}`;
   bookImg.alt = "a picture of a book";
   const bookBlurb = document.createElement("p");
 
@@ -21,7 +21,8 @@ const book = JSON.parse(sessionStorage.getItem("selectedBook"));
 
   selectBookBtn.addEventListener("click", () => {
   // store in users collection in API -> NOTE: this replaces the previous session storage approach for the collection
-    addBookToCollection(book, 1);
+  const userId = sessionStorage.getItem('userId')
+    addBookToCollection(book, userId);
   });
 
   selectBookBtn.innerText = "Add to collection";
@@ -39,10 +40,10 @@ const book = JSON.parse(sessionStorage.getItem("selectedBook"));
 }
 
 function addBookToCollection(book, userId) {
-  fetch(`http://localhost:3000/users/${userId}`)
+  fetch(`${API_URL}/users/${userId}`)
     .then((response) => response.json())
     .then((userData) => {
-      fetch("http://localhost:3000/users/1", {
+      fetch(`${API_URL}/users/${userId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
